@@ -9,7 +9,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <TargetFramework>net6.0</TargetFramework>
     <SourceFolder>C:\Users\joreg\OneDrive\Documents\vvvv\gamma-preview\Exports\Belabox</SourceFolder>
-    <DestFolder>Z:\Belabox2</DestFolder>
+    <DestFolder>Z:\Belabox</DestFolder>
   </PropertyGroup>
   <ItemGroup>
     <FilesToCopy Include="$(SourceFolder)\**" />
@@ -26,5 +26,9 @@
     </ItemGroup>
     <Message Importance="High" Text="Deleting files..." />
     <Delete Files="@(OutdatedFiles)" />
+    <Message Importance="High" Text="Killing previous run..." />
+    <Exec Command="ssh vvvv@vvvvpi &quot;pkill dotnet&quot;" />
+    <Message Importance="High" Text="Startin process..." />
+    <Exec Command="ssh vvvv@vvvvpi &quot;/home/vvvv/.dotnet/dotnet /home/vvvv/Belabox/Belabox.dll &amp;&gt; /dev/null &amp;&quot;" />
   </Target>
 </Project>
